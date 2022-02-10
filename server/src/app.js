@@ -16,7 +16,8 @@ app.use(morgan('combined'));
 
 app.use(express.json());
 
-app.use(planetsRouter);
-app.use(launchesRouter);
+// Configure router with path
+app.use('/planets', planetsRouter);
+app.use('/launches', launchesRouter);
 
 module.exports = app;
