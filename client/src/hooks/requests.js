@@ -16,6 +16,7 @@ async function httpGetLaunches() {
         return a.flightNumber - b.flightNumber;
     });
 }
+
 // Submit given launch data to launch system.
 async function httpSubmitLaunch(launch) {
     try {
@@ -27,6 +28,7 @@ async function httpSubmitLaunch(launch) {
             body: JSON.stringify(launch)
         })
     } catch (error) {
+        console.log(error);
         return {
             ok: false
         }
@@ -34,9 +36,19 @@ async function httpSubmitLaunch(launch) {
 
 }
 
+// Delete launch with given ID.
 async function httpAbortLaunch(id) {
-    // TODO: Once API is ready.
-    // Delete launch with given ID.
+    try {
+        return await fetch(API_URL + "/launches/" + id, {
+            method: "DELETE"
+        })
+    } catch (error) {
+        console.log(error);
+        return {
+            ok: false
+        }
+    }
+
 }
 
 export {
